@@ -16,19 +16,19 @@ public class CategoryManager {
         this.loggers = loggers;
     }
 
-    public void add(Category category) throws Exception {
-        Category category1 = new Category(1, "Java Camp");
+    public void add(Category newCategory) throws Exception {
         List<Category> categoryList = new ArrayList<>();
-        categoryList.add(category1);
+        categoryList.add(new Category(1, "Java Camp"));
 
         for (Category category2 : categoryList) {
-            if (category2.getCategoryName().equals(category.getCategoryName())) {
+            if (category2.getCategoryName().equals(newCategory.getCategoryName())) {
                 throw new Exception("Category name cannot be repeated");
             }
         }
-        baseDao.addCategory(category);
+        baseDao.addCategory(newCategory);
+
         for (Logger logger : loggers) {
-            logger.log(category.getCategoryName());
+            logger.log(newCategory.getCategoryName());
         }
     }
 }
